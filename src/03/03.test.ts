@@ -1,61 +1,62 @@
-import {CityType} from "./02_02";
+import {StudentType} from "../02/02";
+import {addSkill, doesStudentLiveIn, makeStudentActive} from "./03";
 
-let city: CityType;
-beforeEach(() => {
-    city = {
-        title: "New York",
-        houses: [
-            {
-            buildedAt: 2012, repaired: false, address: {
-                number: 100,
-                street: {
-                    title: "While street"
-                }
+let student: StudentType;
+
+beforeEach(()=> {
+    student = {
+        id: 1,
+        "name": "Aleks",
+        age: 34,
+        isActive: false,
+        address: {
+            stritTitle: "Kar 22",
+            city: {
+                title: "Mogilev",
+                coutriTitle: "Belarus"
             }
         },
+        technologies: [
             {
-            buildedAt: 2008, repaired: false, address: {
-                number: 100,
-                street: {
-                    title: "WHappy street"
-                }
-            }
-        },
+                id: 1,
+                title: "HTML"
+            },
             {
-            buildedAt: 2009, repaired: false, address: {
-                number: 100,
-                street: {
-                    title: "Happy street"
-                }
-            }
-        },
-       ],
-        govermentBuilding: [],
-        citizensNumber: 100000
+                id: 2,
+                title: "CSS"
+            },
+            {
+                id: 3,
+                title: "React"
+            },
+        ]
     }
 })
 
-test("test city should contains 3 houses", () => {
-    expect(city.houses.length).toBe(3);
+test("new tech skill should be added to stuedent", ()=> {
+    expect(student.technologies.length).toBe(3);
 
-    expect(city.houses[0].buildedAt).tobe(2012);
-    expect(city.houses[0].repaired).tobe(false);
-    expect(city.houses[0].address.number).tobe(100);
-    expect(city.houses[0].address.street.title).tobe("While street");
+   addSkill(student,"JS")
 
-
-    expect(city.houses[1].buildedAt).tobe(2008);
-    expect(city.houses[1].repaired).tobe(false);
-    expect(city.houses[1].address.number).tobe(100);
-    expect(city.houses[1].address.street.title).tobe("Happy street");
-
-
-    expect(city.houses[2].buildedAt).tobe(2009);
-    expect(city.houses[2].repaired).tobe(false);
-    expect(city.houses[2].address.number).tobe(100);
-    expect(city.houses[2].address.street.title).tobe("Happy street");
+    expect(student.technologies.length).toBe(4);
+    expect(student.technologies[3].title).toBe("JS");
+    expect(student.technologies[3].id).toBeDefined();
 
 })
-// test.skip("test city should contains 3 houses", () =>{
-//
-// })
+test("student should be made active", ()=> {
+    expect(student.isActive).toBe(false);
+
+   makeStudentActive(student)
+
+    expect(student.isActive).toBe(true);
+
+})
+
+test("does student lives in city", ()=> {
+   let result1 = doesStudentLiveIn(student, "Moscow")
+   let result2 = doesStudentLiveIn(student, "Mogilev")
+
+    expect(result1).toBe(false);
+    expect(result2).toBe(true);
+
+})

@@ -1,51 +1,36 @@
+import {StudentType} from "../02/02";
+import {GovermentBuildingType, HouseType} from "../02/02_02";
 
-type  LocalCityType = {
-    title: string
-    coutriTitle: string
-}
-type  TechnologiesType = {
-    id: number
-    title: string
-}
-type AddressType = {
-    stritTitle: string
-    city: LocalCityType
-}
-type StudentType = {
-    id: number
-    name: string
-    age: number
-    isActive: boolean
-    address: AddressType
-    technologies: TechnologiesType[]  //Array<TechnologiesType>
 
+export const sum=(a: number, b: number) =>{
+    return a + b
 }
 
-const student = {
-    id: 1,
-    "name": "Aleks",
-    age: 34,
-    isActive: true,
-    address: {
-        stritTitle: "Kar 22",
-        city: {
-            title: "Mogilev",
-            coutriTitle: "Belarus"
-        }
-    },
-    technologies: [
-        {
-            id: 1,
-            title: "HTML"
-        },
-        {
-            id: 2,
-            title: "CSS"
-        },
-        {
-            id: 3,
-            title: "React"
-        },
-    ]
+export const addSkill = (student:StudentType, skill: string) => {
+    student.technologies.push({
+        id: new Date().getTime(),
+        title: skill    })
 }
-console.log(student.technologies[2].title)
+export function makeStudentActive(s:StudentType ) {
+    s.isActive = true
+}
+export const doesStudentLiveIn = (s:StudentType, cityName: string )=> {
+    return s.address.city.title === cityName
+}
+
+export const addMoneyToBudget = (building: GovermentBuildingType, budget: number)=> {
+    building.budget += budget
+}
+export const repairHouse = (houseType: HouseType)=> {
+houseType.repaired = true
+}
+export const toFireStaff = (building: GovermentBuildingType, staffCountToFire: number)=> {
+    building.staffCouter -= staffCountToFire
+}
+
+export const toHireStaff= (building: GovermentBuildingType, staffCountToHire: number)=> {
+    building.staffCouter += staffCountToHire
+}
+
+
+
