@@ -3,6 +3,8 @@ export type ManType = {
     age: number
 }
 
+
+
 const people: Array<ManType>= [
     {name: "Andrey Ivanov", age: 7},
     {name: "Vavan Rog", age: 74},

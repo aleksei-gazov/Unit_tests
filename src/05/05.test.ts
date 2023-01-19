@@ -15,6 +15,8 @@ beforeEach( ()=> {
     ]
 })
 
+
+
 test('should be array of greting message', ()=> {
 
     const messages = createGretingMessage(people)

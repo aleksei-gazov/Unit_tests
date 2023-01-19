@@ -21,6 +21,7 @@ const chipPredicate = (curse: CoureType) => {
     return curse.price < 160
 }
 
+
 const chipCourses = [
     {title: "CSS", price: 110},
     {title: "React", price: 150}
